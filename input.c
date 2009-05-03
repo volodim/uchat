@@ -24,16 +24,16 @@ input_help(const char *arg) {
 
 void
 input_setnick(const char *arg) {
-  send_cmd(Socket, "NICK %s :\r\n", arg);
+  send_msg(Socket, "NICK %s :\r\n", arg);
 }
 
 void
 input_join(const char *arg) {
-  send_cmd(Socket, "JOIN %s :\r\n", arg);
+  send_msg(Socket, "JOIN %s :\r\n", arg);
 }
 
 void
 input_quit(const char *arg) {
-  send_cmd(Socket, "QUIT %s :\r\n", arg);
+  send_msg(Socket, "QUIT %s :\r\n", arg);
   exit(0);
 }
