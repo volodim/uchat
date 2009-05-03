@@ -32,7 +32,8 @@
  */
 
 /* gui.c */
-int init_screen(void);
+void init_screen(void);
+void init_mainwin(void);
 
 /* irc.c */
 void init_connection(void);

@@ -8,14 +8,26 @@
 
 #include "global.h"
 
-int
+void
 init_screen(void)
 {
      initscr();
      keypad(stdscr, TRUE);
      scrollok(stdscr, TRUE);
-     printw("Welcome to uChat IRC Client.\n");
+     printw("uChat IRC Client.\n");
      refresh();
+}
 
-     return 0;
+void
+init_mainwin(void) {
+    WINDOW *mainwin;
+
+    int height = (LINES - 5);
+    int width = COLS;
+    int starty = 2;
+    int startx = 0;
+    mainwin = newwin(height, width, starty, startx);
+    box(mainwin, 0, 0);
+    wprintw(mainwin, "The main windows: here come the messages\n");
+    wrefresh(mainwin);
 }

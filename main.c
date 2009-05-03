@@ -35,10 +35,10 @@ main(int argc, char *argv[]) {
 
    running = 1;
    printf("uchat starting\n");
-   init_connection();
 
    init_screen();
-
+   init_mainwin();
+   init_connection();
    while(running)
    {
         memset(buffer, 0, 1024);
