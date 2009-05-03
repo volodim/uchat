@@ -17,6 +17,9 @@ usage(void) {
 int
 main(int argc, char *argv[]) {
 
+     int n;
+     char buffer[1024] = { 0 };
+
   /*   int ch;
 
    while ((ch = getopt(argc, argv, "c:n:")) != 1) {
@@ -30,9 +33,26 @@ main(int argc, char *argv[]) {
       }
    }*/
 
+   running = 1;
    printf("uchat starting\n");
+   init_connection();
+
    init_screen();
 
+   while(running)
+   {
+        memset(buffer, 0, 1024);
+
+        if((n = recv(Socket, buffer, 1024, 0) > 0))
+        {
+             printw(buffer);
+
+             refresh();
+        }
+   }
+
+
+   close(Socket);
    endwin();
 
    return 0;

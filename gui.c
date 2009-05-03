@@ -9,16 +9,13 @@
 #include "global.h"
 
 int
-init_screen(void) {
-  int ch;
+init_screen(void)
+{
+     initscr();
+     keypad(stdscr, TRUE);
+     scrollok(stdscr, TRUE);
+     printw("Welcome to uChat IRC Client.\n");
+     refresh();
 
-  initscr();
-  raw();
-  keypad(stdscr, TRUE);
-  noecho();
-
-  printw("Welcome to uChat IRC Client.\n");
-  mvprintw(67, 0, "status bar goes here.\n");
-  ch = getch();
-  return 0;
+     return 0;
 }

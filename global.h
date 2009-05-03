@@ -45,5 +45,6 @@ void send_msg(int sock, char* format, ...);
  * Variables
  */
 int Socket;
+int running;
 
 #endif /* GLOBAL_H */
