@@ -1,0 +1,21 @@
+#!/bin/sh
+
+OS=`uname -s`
+
+echo "Checking the OS... $OS"
+if [ $OS = NetBSD ]; then
+   echo "CC=gcc" >> Makefile.rules
+   echo "LDFLAGS=-lcurses" >> Makefile.rules
+else
+   echo "CC=gcc" >> Makefile.rules
+   echo "LDFLAGS=-lncurses" >> Makefile.rules
+fi
+echo "RM=rm" >> Makefile.rules
+echo "LD=ld" >> Makefile.rules
+
+echo "All good, writing Makefile.rules :)."
+if [ $OS = NetBSD ]; then
+    echo "Now you can type gmake to compile."
+else
+    echo "Now you can type make to compile."
+fi
