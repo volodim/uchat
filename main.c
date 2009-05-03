@@ -35,8 +35,8 @@ main(int argc, char *argv[]) {
    running = 1;
    printf("uchat starting\n");
 
-   init_screen();
    init_connection();
+   init_screen();
 
    while(running)
    {
