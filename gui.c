@@ -14,7 +14,7 @@ init_screen(void)
      initscr();
 
      keypad(stdscr, TRUE);
-     printw("µChat IRC Client.\n");
+     printw("uChat IRC Client.\n");
 
      /* Init main window and the borders */
      mainwin = newwin(LINES - 2, COLS, 1, 0);
