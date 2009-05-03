@@ -16,6 +16,21 @@ const InputStruct input_struct[] =
      { "help", input_help }
 };
 
+void
+input_manage(const char *input)
+{
+     int i;
+
+     if(input[0] == '/')
+     {
+          ++input;
+          for(i = 0; i < LEN(input_struct); ++i)
+               if(!strncmp(input, input_struct[i].cmd, strlen(input_struct[i].cmd)))
+                    input_struct[i].func(input + strlen(input_struct[i].cmd));
+     }
+
+     return;
+}
 
 void
 input_help(const char *arg) {

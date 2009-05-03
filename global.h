@@ -28,6 +28,7 @@
 #define IRC_PORT  6667
 
 #define BUFMAX    4064
+#define LEN(x)    (sizeof(x) / sizeof((x)[0]))
 
 /*
  * Prototypes
