@@ -12,7 +12,7 @@
 void
 send_msg(int sock, char* format, ...)
 {
-     char buf[1024];
+     char buf[BUFMAX];
      va_list ap;
 
      if(!sock)

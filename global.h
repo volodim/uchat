@@ -27,6 +27,8 @@
 #define IRC_CHAN  "#uchat"
 #define IRC_PORT  6667
 
+#define BUFMAX    4064
+
 /*
  * Prototypes
  */
@@ -47,5 +49,6 @@ void send_msg(int sock, char* format, ...);
  */
 int Socket;
 int running;
+WINDOW *mainwin;
 
 #endif /* GLOBAL_H */

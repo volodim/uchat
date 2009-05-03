@@ -18,7 +18,7 @@ int
 main(int argc, char *argv[]) {
 
      int n;
-     char buffer[1024] = { 0 };
+     char buffer[BUFMAX] = { 0 };
 
   /*   int ch;
 
@@ -37,17 +37,16 @@ main(int argc, char *argv[]) {
    printf("uchat starting\n");
 
    init_screen();
-   init_mainwin();
    init_connection();
+
    while(running)
    {
-        memset(buffer, 0, 1024);
+        memset(buffer, 0, BUFMAX);
 
-        if((n = recv(Socket, buffer, 1024, 0) > 0))
+        if((n = recv(Socket, buffer, BUFMAX, 0) > 0))
         {
-             printw(buffer);
-
-             refresh();
+             wprintw(mainwin, buffer);
+             wrefresh(mainwin);
         }
    }
 
