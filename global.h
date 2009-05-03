@@ -15,6 +15,9 @@
 #include <ncurses.h>
 #include <string.h>
 
+#define IRC_NICK  volodim
+#define IRC_SERV  irc.freenode.net
+
 /*
  * Prototypes
  */
