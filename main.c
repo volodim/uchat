@@ -19,9 +19,16 @@ main(int argc, char *argv[]) {
 
      int n;
      char buffer[BUFMAX] = { 0 };
-  /*   int ch;
+     InputBufStruct ib;
+     fd_set fd;
+     static struct timeval timeout;
 
-   while ((ch = getopt(argc, argv, "c:n:")) != 1) {
+     memset(ib.buffer, 0, BUFMAX);
+     ib.pos = 0;
+
+  /*
+    int ch;
+    while ((ch = getopt(argc, argv, "c:n:")) != 1) {
       switch (ch) {
          case 'c':
                break;
@@ -30,29 +37,48 @@ main(int argc, char *argv[]) {
          case '?':
                usage();
       }
-   }*/
+   }
+  */
 
    running = 1;
    printf("uchat starting\n");
 
    init_connection();
-   init_screen();
+   init_gui();
 
    while(running)
    {
-        memset(buffer, 0, BUFMAX);
+        timeout.tv_sec = 0;
+        timeout.tv_usec = 10000;
+        FD_ZERO(&fd);
+        FD_SET(STDIN_FILENO, &fd);
 
-        if((n = recv(Socket, buffer, BUFMAX, 0) > 0))
+        if(Socket >= 0)
+             FD_SET(Socket, &fd);
+
+        if(select(FD_SETSIZE, &fd, NULL, NULL, &timeout))
         {
-             wprintw(mainwin, buffer);
-             wrefresh(mainwin);
-	     wmove(inputwin, 0, 0);
-	     wrefresh(inputwin);
-	     wgetnstr(inputwin, buffer, BUFMAX);
-	     input_manage(buffer);
-        }
-   }
+             if(FD_ISSET(STDIN_FILENO, &fd))
+                  gui_get_input(&ib);
+             else
+             {
+                  if(Socket >= 0 && (FD_ISSET(Socket, &fd)))
+                  {
+                       memset(buffer, 0, BUFMAX);
+                       n = recv(Socket, buffer, BUFMAX, 0);
 
+                       if(n > 0)
+                       {
+                            wprintw(mainwin, buffer);
+                            wrefresh(mainwin);
+                       }
+                  }
+             }
+        }
+
+        wmove(inputwin, 0, ib.pos);
+        wrefresh(inputwin);
+   }
 
    close(Socket);
    endwin();

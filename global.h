@@ -21,22 +21,39 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-#define IRC_NICK  "uchat_test"
-#define IRC_NAME  "Uchat test"
+#define IRC_NICK  "uchatTEST"
+#define IRC_NAME  "pwetuchat."
 #define IRC_SERV  "irc.freenode.net"
 #define IRC_CHAN  "#uchat"
 #define IRC_PORT  6667
 
-#define BUFMAX    4064
-#define LEN(x)    (sizeof(x) / sizeof((x)[0]))
+#define BUFMAX           4064
+#define UCHAT_KEY_ENTER  10
+#define LEN(x)           (sizeof(x) / sizeof((x)[0]))
+
+/*
+ * Structs
+ */
+typedef struct
+{
+     char *cmd;
+     void (*func)(const char *arg);
+} InputStruct;
+
+typedef struct
+{
+     char buffer[BUFMAX];
+     int pos;
+} InputBufStruct;
+
 
 /*
  * Prototypes
  */
 
 /* gui.c */
-void init_screen(void);
-void init_mainwin(void);
+void init_gui(void);
+void gui_get_input(InputBufStruct *ib);
 
 /* irc.c */
 void init_connection(void);
@@ -50,15 +67,6 @@ void input_setnick(const char *arg);
 void input_join(const char *arg);
 void input_quit(const char *arg);
 void input_manage(const char *input);
-
-/*
- * Structs
- */
-typedef struct
-{
-     char *cmd;
-     void (*func)(const char *arg);
-} InputStruct;
 
 /*
  * Variables

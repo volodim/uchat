@@ -40,7 +40,7 @@ init_connection(void)
 
      /* Send nick/name to the serv */
      send_msg(Socket, "NICK "IRC_NICK" :\r\n");
-     send_msg(Socket, "USER %s %s %s :%s\r\n", "martin", "martin", IRC_SERV, IRC_NICK);
+     send_msg(Socket, "USER %s %s %s :%s\r\n", IRC_NAME, IRC_NAME, IRC_SERV, IRC_NICK);
 
      /* Join IRC_CHAN */
      send_msg(Socket, "JOIN "IRC_CHAN" :\r\n");

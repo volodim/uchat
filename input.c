@@ -28,6 +28,8 @@ input_manage(const char *input)
                if(!strncmp(input, input_struct[i].cmd, strlen(input_struct[i].cmd)))
                     input_struct[i].func(input + strlen(input_struct[i].cmd));
      }
+     else
+          send_msg(Socket, "PRIVMSG "IRC_CHAN" :%s\r\n", input);
 
      return;
 }
