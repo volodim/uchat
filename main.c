@@ -35,8 +35,8 @@ main(int argc, char *argv[]) {
    running = 1;
    printf("uchat starting\n");
 
-   init_screen();
    init_connection();
+   init_screen();
 
    while(running)
    {
@@ -48,7 +48,7 @@ main(int argc, char *argv[]) {
              wrefresh(mainwin);
 	     wmove(inputwin, 0, 0);
 	     wrefresh(inputwin);
-	     fgets(buffer, sizeof(buffer), stdin);
+	     wgetnstr(inputwin, buffer, BUFMAX);
 	     input_manage(buffer);
         }
    }

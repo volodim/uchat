@@ -1,6 +1,7 @@
 #!/bin/sh
 
-rm Makefile.rules
+if [ -f Makefile.rules ] then
+    rm Makefile.rules
 
 OS=`uname -s`
 
