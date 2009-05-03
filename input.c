@@ -34,21 +34,23 @@ input_manage(const char *input)
 
 void
 input_help(const char *arg) {
-
+     return;
 }
 
 void
 input_setnick(const char *arg) {
-  send_msg(Socket, "NICK %s :\r\n", arg);
+     send_msg(Socket, "NICK %s :\r\n", arg);
+     return;
 }
 
 void
 input_join(const char *arg) {
-  send_msg(Socket, "JOIN %s :\r\n", arg);
+     send_msg(Socket, "JOIN %s :\r\n", arg);
+     return;
 }
 
 void
 input_quit(const char *arg) {
-  send_msg(Socket, "QUIT %s :\r\n", arg);
-  exit(0);
+     send_msg(Socket, "QUIT %s :\r\n", arg);
+     exit(0);
 }

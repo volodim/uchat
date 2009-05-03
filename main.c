@@ -19,7 +19,6 @@ main(int argc, char *argv[]) {
 
      int n;
      char buffer[BUFMAX] = { 0 };
-
   /*   int ch;
 
    while ((ch = getopt(argc, argv, "c:n:")) != 1) {
@@ -47,6 +46,10 @@ main(int argc, char *argv[]) {
         {
              wprintw(mainwin, buffer);
              wrefresh(mainwin);
+	     wmove(inputwin, 0, 0);
+	     wrefresh(inputwin);
+	     fgets(buffer, sizeof(buffer), stdin);
+	     input_manage(buffer);
         }
    }
 

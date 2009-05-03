@@ -49,6 +49,7 @@ void input_help(const char *arg);
 void input_setnick(const char *arg);
 void input_join(const char *arg);
 void input_quit(const char *arg);
+void input_manage(const char *input);
 
 /*
  * Structs
@@ -65,5 +66,6 @@ typedef struct
 int Socket;
 int running;
 WINDOW *mainwin;
+WINDOW *inputwin;
 
 #endif /* GLOBAL_H */
