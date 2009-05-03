@@ -11,6 +11,8 @@
 void
 init_screen(void)
 {
+     int bg = -1;
+
      initscr();
      noecho();
      keypad(stdscr, TRUE);
@@ -18,8 +20,9 @@ init_screen(void)
 
      /* Color support */
      start_color();
-     init_pair(0, COLOR_BLACK, COLOR_BLACK);
-     init_pair(1, COLOR_WHITE, COLOR_BLACK);
+     bg = (use_default_colors() == OK) ? -1 : COLOR_BLACK;
+     init_pair(0, COLOR_BLACK, COLOR_GREEN);
+     init_pair(1, COLOR_WHITE, bg);
 
      /* Init main window and the borders */
      mainwin = newwin(LINES - 2, COLS, 1, 0);
