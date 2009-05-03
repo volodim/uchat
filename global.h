@@ -43,6 +43,11 @@ void init_connection(void);
 /* util.c */
 void send_msg(int sock, char* format, ...);
 
+/* input.c */
+void input_help(char *arg);
+void input_setnick(char *arg);
+void input_join(char *arg);
+void input_quit(char *arg);
 
 /*
  * Variables

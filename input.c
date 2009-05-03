@@ -17,21 +17,20 @@ const char struct socket_commands[] = {
 
 
 void
-input_help(void) {
+input_help(char *arg) {
 
 }
 
 void
-input_setnick(char nickname[]) {
+input_setnick(char *arg) {
 
 }
 
 void
-input_join(char chan_name[]) {
+input_join(char *arg) {
 
 }
 
-int
-input_quit(char msg[]) {
-  return EXIT_SUCCESS;
+void
+input_quit(char *arg) {
 }
