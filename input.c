@@ -8,29 +8,30 @@
 
 #include "global.h"
 
-const char struct socket_commands[] = {
-  { "/join",    input_join },
-  { "/nick",    input_setnick },
-  { "/quit",    input_quit },
-  { "/help",    input_help }
+const InputStruct input_struct[] =
+{
+     { "join", input_join },
+     { "nick", input_setnick },
+     { "quit", input_quit },
+     { "help", input_help }
 };
 
 
 void
-input_help(char *arg) {
+input_help(const char *arg) {
 
 }
 
 void
-input_setnick(char *arg) {
+input_setnick(const char *arg) {
 
 }
 
 void
-input_join(char *arg) {
+input_join(const char *arg) {
 
 }
 
 void
-input_quit(char *arg) {
+input_quit(const char *arg) {
 }

@@ -44,10 +44,19 @@ void init_connection(void);
 void send_msg(int sock, char* format, ...);
 
 /* input.c */
-void input_help(char *arg);
-void input_setnick(char *arg);
-void input_join(char *arg);
-void input_quit(char *arg);
+void input_help(const char *arg);
+void input_setnick(const char *arg);
+void input_join(const char *arg);
+void input_quit(const char *arg);
+
+/*
+ * Structs
+ */
+typedef struct
+{
+     char *cmd;
+     void (*func)(const char *arg);
+} InputStruct;
 
 /*
  * Variables
