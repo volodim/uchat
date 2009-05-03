@@ -1,5 +1,5 @@
 EXEC     = uchat
-SRCS     = main.c gui.c irc.c util.c
+SRCS     = main.c gui.c irc.c util.c input.c
 CFLAGS   = -Wall -Werror -g -I/usr/include -I/usr/pkg/include
 include  Makefile.rules
 
