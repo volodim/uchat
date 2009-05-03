@@ -10,4 +10,6 @@ all: $(EXEC)
 $(EXEC): $(OBJS)
 	$(CC) $(OBJS) -o $(EXEC) $(LDFLAGS)
 clean:
-	$(LD) *.o $(EXEC)
+	$(RM) *.o $(EXEC)
+clean-all: clean
+	$(RM) Makefile.rules

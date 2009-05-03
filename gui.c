@@ -18,6 +18,7 @@ init_screen(void) {
   noecho();
 
   printw("Welcome to uChat IRC Client.\n");
+  mvprintw(67, 0, "status bar goes here.\n");
   ch = getch();
   return 0;
 }
