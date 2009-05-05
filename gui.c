@@ -21,8 +21,8 @@ init_gui(void)
      /* Color support */
      start_color();
      bg = (use_default_colors() == OK) ? -1 : COLOR_BLACK;
-     init_pair(0, COLOR_BLACK, COLOR_GREEN);
-     init_pair(1, COLOR_WHITE, bg);
+     init_pair(0, bg, bg);
+     init_pair(1, COLOR_BLACK, COLOR_GREEN);
 
      /* Init main window and the borders */
      mainwin = newwin(LINES - 2, COLS, 1, 0);
@@ -30,15 +30,29 @@ init_gui(void)
      wrefresh(mainwin);
 
      /* Init input window */
-     inputwin = newwin(LINES - 4, COLS, LINES - 2, 0);
+     inputwin = newwin(1, COLS, LINES - 1, 0);
      wmove(inputwin, 0, 0);
      wrefresh(inputwin);
+
+     /* Init status window (with the hour / current chan) */
+     statuswin = newwin(1, COLS, LINES - 2, 0);
+     wbkgd(statuswin, COLOR_PAIR(1));
+     wrefresh(statuswin);
 
      refresh();
 
      return;
 }
 
+void
+gui_update_statuswin(void)
+{
+     wprintw(statuswin, "[%s]", get_date("%D"));
+
+     wrefresh(statuswin);
+
+     return;
+}
 
 void
 gui_get_input(InputBufStruct *ib)

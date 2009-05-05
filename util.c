@@ -27,3 +27,18 @@ send_msg(int sock, char* format, ...)
      return;
 }
 
+char*
+get_date(char *format)
+{
+     char *ret;
+
+     ret = malloc(sizeof(char) * BUFMAX / 8);
+
+     tm = localtime(&lt);
+     lt = time(NULL);
+
+     strftime(ret, sizeof(ret), format, tm);
+
+     return ret;
+}
+

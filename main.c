@@ -45,6 +45,7 @@ main(int argc, char *argv[]) {
 
    init_connection();
    init_gui();
+   gui_get_input(&ib);
 
    while(running)
    {
@@ -78,6 +79,7 @@ main(int argc, char *argv[]) {
 
         wmove(inputwin, 0, ib.pos);
         wrefresh(inputwin);
+        gui_update_statuswin();
    }
 
    close(Socket);

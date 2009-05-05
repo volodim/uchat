@@ -13,6 +13,7 @@
 #include <unistd.h>
 #include <ncurses.h>
 #include <string.h>
+#include <time.h>
 #include <regex.h>
 #include <netdb.h>
 #include <sys/utsname.h>
@@ -27,7 +28,7 @@
 #define IRC_CHAN  "#uchat"
 #define IRC_PORT  6667
 
-#define BUFMAX           4064
+#define BUFMAX           4096
 #define UCHAT_KEY_ENTER  10
 #define LEN(x)           (sizeof(x) / sizeof((x)[0]))
 
@@ -46,20 +47,22 @@ typedef struct
      int pos;
 } InputBufStruct;
 
-
 /*
  * Prototypes
  */
 
 /* gui.c */
 void init_gui(void);
+void gui_update_statuswin(void);
 void gui_get_input(InputBufStruct *ib);
+
 
 /* irc.c */
 void init_connection(void);
 
 /* util.c */
 void send_msg(int sock, char* format, ...);
+char* get_date(char *format);
 
 /* input.c */
 void input_help(const char *arg);
@@ -73,7 +76,10 @@ void input_manage(const char *input);
  */
 int Socket;
 int running;
+struct tm *tm;
+time_t lt;
 WINDOW *mainwin;
 WINDOW *inputwin;
+WINDOW *statuswin;
 
 #endif /* GLOBAL_H */
