@@ -3,6 +3,8 @@
  *
  * Copyright (C) volodim - 2009
  * <benjamin.burget@gmail.com>
+ * Copyright (C) xorg62 - 2009
+ * <xorg62@gmail.com>
  *
  */
 

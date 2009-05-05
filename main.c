@@ -3,6 +3,8 @@
  *
  * Copyright (C) volodim - 2009
  * <benjamin.burget@gmail.com>
+ * Copyright (C) xorg62 - 2009
+ * <xorg62@gmail.com>
  *
  */
 
@@ -78,7 +80,6 @@ main(int argc, char *argv[]) {
         }
 
 
-        update_date();
         gui_update_statuswin();
 
         /* Alway put cursor in the inputwin */

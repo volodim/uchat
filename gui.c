@@ -3,6 +3,8 @@
  *
  * Copyright (C) volodim - 2009
  * <benjamin.burget@gmail.com>
+ * Copyright (C) xorg62 - 2009
+ * <xorg62@gmail.com>
  *
  */
 
@@ -48,6 +50,8 @@ void
 gui_update_statuswin(void)
 {
      werase(statuswin);
+
+     update_date();
 
      mvwprintw(statuswin, 0, 0, "[%s]", global_date);
 
