@@ -47,7 +47,11 @@ init_gui(void)
 void
 gui_update_statuswin(void)
 {
-     wprintw(statuswin, "[%s]", get_date("%D"));
+     werase(statuswin);
+
+     mvwprintw(statuswin, 0, 0, "[%s]", global_date);
+
+     wbkgd(statuswin, COLOR_PAIR(1));
 
      wrefresh(statuswin);
 
@@ -120,7 +124,7 @@ gui_get_input(InputBufStruct *ib)
           break;
 
      default:
-          if(c > 0 && strlen(ib->buffer) < BUFMAX)
+          if(c > 0 && strlen(ib->buffer) < BUFSIZE)
           {
                ib->buffer[ib->pos] = c;
                ++(ib->pos);

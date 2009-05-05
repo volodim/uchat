@@ -18,12 +18,12 @@ int
 main(int argc, char *argv[]) {
 
      int n;
-     char buffer[BUFMAX] = { 0 };
+     char buffer[BUFSIZE] = { 0 };
      InputBufStruct ib;
      fd_set fd;
      static struct timeval timeout;
 
-     memset(ib.buffer, 0, BUFMAX);
+     memset(ib.buffer, 0, BUFSIZE);
      ib.pos = 0;
 
   /*
@@ -65,8 +65,8 @@ main(int argc, char *argv[]) {
              {
                   if(Socket >= 0 && (FD_ISSET(Socket, &fd)))
                   {
-                       memset(buffer, 0, BUFMAX);
-                       n = recv(Socket, buffer, BUFMAX, 0);
+                       memset(buffer, 0, BUFSIZE);
+                       n = recv(Socket, buffer, BUFSIZE, 0);
 
                        if(n > 0)
                        {
@@ -77,9 +77,13 @@ main(int argc, char *argv[]) {
              }
         }
 
+
+        update_date();
+        gui_update_statuswin();
+
+        /* Alway put cursor in the inputwin */
         wmove(inputwin, 0, ib.pos);
         wrefresh(inputwin);
-        gui_update_statuswin();
    }
 
    close(Socket);

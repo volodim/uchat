@@ -28,7 +28,7 @@
 #define IRC_CHAN  "#uchat"
 #define IRC_PORT  6667
 
-#define BUFMAX           4096
+#define BUFSIZE          4096
 #define UCHAT_KEY_ENTER  10
 #define LEN(x)           (sizeof(x) / sizeof((x)[0]))
 
@@ -43,7 +43,7 @@ typedef struct
 
 typedef struct
 {
-     char buffer[BUFMAX];
+     char buffer[BUFSIZE];
      int pos;
 } InputBufStruct;
 
@@ -62,7 +62,7 @@ void init_connection(void);
 
 /* util.c */
 void send_msg(int sock, char* format, ...);
-char* get_date(char *format);
+void update_date(void);
 
 /* input.c */
 void input_help(const char *arg);
@@ -78,6 +78,7 @@ int Socket;
 int running;
 struct tm *tm;
 time_t lt;
+char global_date[BUFSIZE];
 WINDOW *mainwin;
 WINDOW *inputwin;
 WINDOW *statuswin;

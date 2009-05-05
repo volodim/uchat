@@ -12,7 +12,7 @@
 void
 send_msg(int sock, char* format, ...)
 {
-     char buf[BUFMAX];
+     char buf[BUFSIZE];
      va_list ap;
 
      if(!sock)
@@ -27,18 +27,14 @@ send_msg(int sock, char* format, ...)
      return;
 }
 
-char*
-get_date(char *format)
+void
+update_date(void)
 {
-     char *ret;
-
-     ret = malloc(sizeof(char) * BUFMAX / 8);
-
      tm = localtime(&lt);
      lt = time(NULL);
 
-     strftime(ret, sizeof(ret), format, tm);
+     strftime(global_date, sizeof(global_date), "%r", tm);
 
-     return ret;
+     return;
 }
 
