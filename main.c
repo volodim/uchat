@@ -24,28 +24,28 @@ main(int argc, char *argv[]) {
      InputBufStruct ib;
      fd_set fd;
      static struct timeval timeout;
+     int online = 0;
 
      memset(ib.buffer, 0, BUFSIZE);
      ib.pos = 0;
 
-  /*
-    int ch;
-    while ((ch = getopt(argc, argv, "c:n:")) != 1) {
-      switch (ch) {
+     if(argc > 1) {
+     int ch;
+      while ((ch = getopt(argc, argv, "c:n:")) != 1) {
+       switch (ch) {
          case 'c':
                break;
 	 case 'n':
                break;
          case '?':
                usage();
+       }
       }
-   }
-  */
+     }
 
    running = 1;
    printf("uchat starting\n");
 
-   init_connection();
    init_gui();
    gui_get_input(&ib);
 
@@ -80,14 +80,13 @@ main(int argc, char *argv[]) {
         }
 
 
-        gui_update_statuswin();
+        gui_update_statuswin(online);
 
         /* Alway put cursor in the inputwin */
         wmove(inputwin, 0, ib.pos);
         wrefresh(inputwin);
    }
-
-   close(Socket);
+   clear();
    endwin();
 
    return 0;

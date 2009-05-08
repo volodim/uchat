@@ -15,7 +15,9 @@ const InputStruct input_struct[] =
      { "join", input_join },
      { "nick", input_setnick },
      { "quit", input_quit },
-     { "help", input_help }
+     { "help", input_help },
+     { "connect", input_connect },
+     { "disconnect", input_disconnect }
 };
 
 void
@@ -51,6 +53,25 @@ void
 input_join(const char *arg) {
      send_msg(Socket, "JOIN %s :\r\n", arg);
      return;
+}
+
+void
+input_part(const char *arg) {
+     send_msg(Socket, "PART %s :\r\n", arg);
+     return;
+}
+
+void
+input_connect(const char *arg) {
+  int online;
+  init_connection("irc.freenode.net", 6667, online);
+  gui_update_statuswin(online);
+  return;
+}
+
+void
+input_disconnect(const char *arg) {
+  return;
 }
 
 void

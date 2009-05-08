@@ -27,7 +27,7 @@
 
 #define IRC_NICK  "uchatTEST"
 #define IRC_NAME  "pwetuchat."
-#define IRC_SERV  "irc.freenode.net"
+char *serverhost;
 #define IRC_CHAN  "#uchat"
 #define IRC_PORT  6667
 
@@ -56,12 +56,12 @@ typedef struct
 
 /* gui.c */
 void init_gui(void);
-void gui_update_statuswin(void);
+void gui_update_statuswin(int online);
 void gui_get_input(InputBufStruct *ib);
 
 
 /* irc.c */
-void init_connection(void);
+void init_connection(char *serverhost, int port, int online, ...);
 
 /* util.c */
 void send_msg(int sock, char* format, ...);
@@ -73,6 +73,9 @@ void input_setnick(const char *arg);
 void input_join(const char *arg);
 void input_quit(const char *arg);
 void input_manage(const char *input);
+void input_connect(const char *arg);
+void input_disconnect(const char *arg);
+
 
 /*
  * Variables

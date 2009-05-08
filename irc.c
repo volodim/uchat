@@ -1,4 +1,4 @@
-/*
+;/*
  * irc.c
  *
  * Copyright (C) volodim - 2009
@@ -11,12 +11,12 @@
 #include "global.h"
 
 void
-init_connection(void)
+init_connection(char *serverhost, int port, int online, ...)
 {
      struct hostent *server;
      struct sockaddr_in addr;
 
-     server = gethostbyname(IRC_SERV);
+     server = gethostbyname(serverhost);
 
      if(server->h_addrtype != AF_INET)
      {
@@ -25,7 +25,7 @@ init_connection(void)
      }
 
      addr.sin_family = AF_INET;
-     addr.sin_port = htons(IRC_PORT);
+     addr.sin_port = htons(port);
      memcpy(&addr.sin_addr.s_addr, server->h_addr_list[0], server->h_length);
 
      if((Socket = socket(AF_INET, SOCK_STREAM, 0)) < 0)
@@ -40,9 +40,11 @@ init_connection(void)
           return;
      }
 
+     online = 1;
+
      /* Send nick/name to the serv */
      send_msg(Socket, "NICK "IRC_NICK" :\r\n");
-     send_msg(Socket, "USER %s %s %s :%s\r\n", IRC_NAME, IRC_NAME, IRC_SERV, IRC_NICK);
+     send_msg(Socket, "USER %s %s %s :%s\r\n", IRC_NAME, IRC_NAME, serverhost, IRC_NICK);
 
      /* Join IRC_CHAN */
      send_msg(Socket, "JOIN "IRC_CHAN" :\r\n");

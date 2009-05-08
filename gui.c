@@ -47,16 +47,19 @@ init_gui(void)
 }
 
 void
-gui_update_statuswin(void)
+gui_update_statuswin(int online)
 {
      werase(statuswin);
 
      update_date();
 
      mvwprintw(statuswin, 0, 0, "[%s]", global_date);
+     if(online == 0)
+       mvwprintw(statuswin, 0, 15, "[offline]");
+     else
+       mvwprintw(statuswin, 0, 15, "[%s]", serverhost);
 
      wbkgd(statuswin, COLOR_PAIR(1));
-
      wrefresh(statuswin);
 
      return;
